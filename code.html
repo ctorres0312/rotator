@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: A Coding Project by Christian Torres</title>
+    <title>Rotator: A Coding Project by Christian Torres</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -48,7 +48,7 @@
             src="img/CT_logo_white.png"
             width="50"
             class="d-inline-block"
-          />APP NAME</a
+          />Rotator</a
         >
         <button
           class="navbar-toggler"
@@ -75,7 +75,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="#">Git Repo</a>
+              <a class="nav-link" target="_blank" href="https://github.com/ctorres0312/rotator">Git Repo</a>
             </li>
             <li class="nav-item">
               <a
@@ -93,21 +93,78 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
       <div class="container py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for App Name.</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for Rotator.</h2>
         <div class="row row-cols-1 row-cols-lg-2">
           <div class="col-lg-8">
             <pre class="line-numbers"><code class="language-javascript">
-              //Call Hello World
-              function helloWorld() {
-                alert("Hello World");
-              }
+              //get our user input
+function getValue(){
+
+    //make sure the alert is invisible
+    document.getElementById("alert").classList.add("invisible");
+    //get user string from the page
+    let userString = document.getElementById("userString").value;
+    //check for a palindrome
+    let returnObj = checkForPalindrome(userString);
+    //display out message to the screen
+    displayMessage(returnObj);
+}
+
+//check if string is a palindrome
+function checkForPalindrome(userString) {
+    userString = userString.toLowerCase();
+
+    //remove spaces and special characters
+    let regex = /[^a-z0-9]/gi;
+    userString = userString.replace(regex, "");
+
+    let revString = [];
+    let returnObj = {};
+
+
+    for (let i = userString.length - 1; i >= 0; i--) {
+        revString += userString[i];
+    }
+
+    if (revString == userString) {
+        returnObj.msg = "Well done! You entered a palindrome!"
+    } else {
+        returnObj.msg = "Sorry! You did not enter a palindrome!"
+    }
+
+    returnObj.reversed = revString;
+
+    return returnObj;
+
+}
+
+//display a message to the screen
+function displayMessage(returnObj) {
+    document.getElementById("alertHeader").innerHTML = returnObj.msg;
+    document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed} `;
+    document.getElementById("alert").classList.remove("invisible");
+}
               </code>
             </pre>
           </div>
           <div class="col-lg-4">
-            <p>The Code is structed in one function.</p>
-            <h5>Hello World</h5>
-            <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+            <p>The Code is constructed in three functions.</p>
+            <p>
+              *some code may not show via prism. See source to see complete
+              code.
+            </p>
+            <h5>getValuee</h5>
+            <p>
+              The `getValue` function retrieves a user input string, hides an alert element, checks if the string is a palindrome using `checkForPalindrome`, and then displays the result using `displayMessage`.
+            </p>
+            <h5>checkForPalindrome</h5>
+            <p>
+              The "checkForPalindrome" function normalizes a string by converting it to lowercase and removing non-alphanumeric characters, checks if it reads the same forwards and backwards, and returns an object containing a message and the reversed string.
+            </p>
+            <h5>displayMessage</h5>
+            <p>
+              The "displayMessage" function updates the content of HTML elements with the message and reversed string from `returnObj`, and makes the alert element visible.
+            </p>
           </div>
         </div>
       </div>
